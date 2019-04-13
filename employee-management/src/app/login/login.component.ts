@@ -9,7 +9,7 @@ import { AuthenticationService } from '../service/authentication.service';
 })
 export class LoginComponent implements OnInit {
 
-  username = 'vinoth'
+  username = ''
   password = ''
   invalidLogin = false
 
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  checkLogin(){
+  /*checkLogin(){
     if(this.loginService.authenticate(this.username, this.password)){
       console.log("checkLogin() is called in IF loop in LoginComponent");
       this.router.navigate(['']);
@@ -30,6 +30,24 @@ export class LoginComponent implements OnInit {
       this.invalidLogin = true;
       console.log(" this.invalidLogin status in ESLE loop" +  this.invalidLogin);
     }
+  }*/
+
+  checkLogin() {
+    console.log("checkLogin() is called in LoginComponent");
+    (this.loginService.authenticate(this.username, this.password).subscribe(
+      data => {
+        this.router.navigate([''])
+        this.invalidLogin = false
+        console.log(" this.invalidLogin status in data of subscribe -> " +  this.invalidLogin);
+      },
+      error => {
+        this.invalidLogin = true
+        console.log(" this.invalidLogin status in error -> " +  this.invalidLogin);
+
+      }
+    )
+    );
+
   }
 
 }
