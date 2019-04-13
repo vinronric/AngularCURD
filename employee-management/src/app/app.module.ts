@@ -5,12 +5,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EmployeeComponent } from './employee/employee.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import { BasicAuthHtppInterceptorService } from './service/basic-auth-interceptor.service';
 
 
 @NgModule({
@@ -30,7 +31,10 @@ import { LogoutComponent } from './logout/logout.component';
     HttpClientModule
     
   ],
-  providers: [],
+  providers: [{  
+    provide:HTTP_INTERCEPTORS, useClass:BasicAuthHtppInterceptorService, multi:true 
+  }],
+  //bootstrap: [AppComponent,HeaderComponent,FooterComponent]
   bootstrap: [AppComponent,HeaderComponent,FooterComponent]
 })
 export class AppModule { }

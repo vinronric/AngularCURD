@@ -31,9 +31,10 @@ export class HttpClientService {
      //Angular basic Authentication
     //return this.httpClient.get<Employee[]>('http://localhost:8087/employees');
     //Spring Boot Basic Authentication
-    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
-    console.log("headers -> " + headers);
-    return this.httpClient.get<Employee[]>('http://localhost:8087/employees',{headers});
+    //const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
+    //console.log("headers -> " + headers);
+    //return this.httpClient.get<Employee[]>('http://localhost:8087/employees',{headers});
+    return this.httpClient.get<Employee[]>('http://localhost:8087/employees');
   }
 
   public deleteEmployee(eid) {
@@ -46,8 +47,9 @@ export class HttpClientService {
     //Angular basic Authentication
     //return this.httpClient.delete<Employee>("http://localhost:8087/employees" + "/"+ eid);
     //Spring Boot Basic Authentication
-    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
-    return this.httpClient.delete<Employee>("http://localhost:8087/employees" + "/"+ eid,{headers});
+    //const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
+    //return this.httpClient.delete<Employee>("http://localhost:8087/employees" + "/"+ eid,{headers});
+    return this.httpClient.delete<Employee>("http://localhost:8087/employees" + "/"+ eid);
   }
 
   public createEmployee(employee) {
@@ -58,7 +60,8 @@ export class HttpClientService {
     //Angular basic Authentication
     //return this.httpClient.post<Employee>("http://localhost:8087/employees", employee);
     //Spring Boot Basic Authentication
-    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
-    return this.httpClient.post<Employee>("http://localhost:8087/employees", employee,{headers});
+    //const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
+    //return this.httpClient.post<Employee>("http://localhost:8087/employees", employee,{headers});
+    return this.httpClient.post<Employee>("http://localhost:8087/employees", employee);
   }
 }
